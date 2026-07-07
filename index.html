@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Punaisen Pässin Lammastila – Luonnonlaidunlammas Juupajoki</title>
+  <meta name="description" content="Punaisen Pässin Lammastila Juupajoella: suomenlampaat luonnonlaitumilla, perinnemaiseman hoitajat, karitsanlihaa suoramyyntinä.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────── */
+    :root {
+      --night:   #18274a;
+      --night2:  #1f3158;
+      --cream:   #f5f3ee;
+      --cream2:  #eae5db;
+      --terra:   #c05a3a;
+      --terra2:  #d97050;
+      --sage:    #758a5e;
+      --sage2:   #9aaf7e;
+      --ink:     #0e1a30;
+      --mid:     #8d9db5;
+
+      --serif: 'Vollkorn', Georgia, serif;
+      --sans:  'Work Sans', system-ui, sans-serif;
+
+      --r: 8px;
+      --max: 1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      font-size: clamp(15px, 1.05vw, 17px);
+      background: var(--cream);
+      color: var(--night);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: var(--sans); }
+    .ph {
+      background: rgba(24,39,74,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(24,39,74,0.15);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─────────────────────────────────────────
+       I18N
+    ───────────────────────────────────────── */
+    .i18n-block { display: none; }
+    .i18n-block.active { display: block; }
+    .i18n-inline { display: none; }
+    .i18n-inline.active { display: inline; }
+
+    /* ─────────────────────────────────────────
+       NAV — sticky, centered wordmark
+    ───────────────────────────────────────── */
+    #site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--night);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      height: 64px;
+      box-shadow: 0 2px 20px rgba(14,26,48,0.3);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span {
+      color: var(--terra);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: clamp(1.2rem, 2.5vw, 2rem);
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,243,238,0.7);
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--terra);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .lang-switch {
+      display: flex;
+      gap: 3px;
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid rgba(245,243,238,0.2);
+      color: rgba(245,243,238,0.5);
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      border-color: var(--terra);
+      color: var(--terra);
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: all 0.3s;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 64px 0 0 0;
+        background: var(--night);
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 99;
+      }
+      .nav-links.open a { font-size: 1rem; }
+    }
+
+    /* ─────────────────────────────────────────
+       HERO — full bleed, text top-right
+    ───────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 92vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg img, .hero-bg .ph {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(14,26,48,0.5) 0%, transparent 50%, rgba(14,26,48,0.6) 100%),
+        linear-gradient(to left, rgba(14,26,48,0.7) 0%, transparent 55%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      text-align: right;
+      padding: clamp(3rem, 8vh, 6rem) clamp(1.5rem, 5vw, 5rem) 3rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terra2);
+      margin-bottom: 1.2rem;
+    }
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4.8rem);
+      line-height: 1.1;
+      color: var(--cream);
+      max-width: 560px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--sage2);
+    }
+    .hero-sub {
+      font-size: clamp(0.88rem, 1.1vw, 1rem);
+      color: rgba(245,243,238,0.82);
+      max-width: 440px;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid rgba(245,243,238,0.3);
+      border-radius: var(--r);
+      padding: 0.5rem 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,243,238,0.7);
+    }
+    .hero-badge::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      background: var(--sage);
+      border-radius: 50%;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(245,243,238,0.4);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1.5px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, rgba(245,243,238,0.4));
+      animation: scrollCue 2s ease-in-out infinite;
+    }
+    @keyframes scrollCue { 0%,100%{opacity:0.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
+
+    @media (max-width: 600px) {
+      .hero-content { align-items: flex-start; text-align: left; }
+      .hero-bg::after { background: linear-gradient(to bottom, rgba(14,26,48,0.55) 0%, rgba(14,26,48,0.4) 50%, rgba(14,26,48,0.65) 100%); }
+    }
+
+    /* ─────────────────────────────────────────
+       PERINNEMAISEMA BAND — signature feature
+    ───────────────────────────────────────── */
+    #perinnemaisema {
+      background: var(--night);
+      color: var(--cream);
+      padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 3.5rem);
+    }
+    .pm-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 5rem);
+      align-items: center;
+    }
+    .pm-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terra);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .pm-label::before { content:''; display:block; width:24px; height:1px; background:var(--terra); }
+    .pm-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .pm-body {
+      font-size: 0.9rem;
+      color: rgba(245,243,238,0.72);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    .pm-body p + p { margin-top: 0.9rem; }
+    /* Landscape illustration — zones where sheep graze */
+    .landscape-map {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--night2);
+      border: 1px solid rgba(245,243,238,0.1);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .landscape-map svg {
+      width: 100%;
+      height: 100%;
+    }
+    .map-zone {
+      fill: var(--sage);
+      opacity: 0.18;
+      transition: opacity 0.3s;
+    }
+    .map-zone:hover { opacity: 0.35; }
+    .map-zone.active { opacity: 0.28; fill: var(--sage2); }
+    .map-label-text { font-family: sans-serif; font-size: 10px; fill: rgba(245,243,238,0.6); }
+
+    @media (max-width: 720px) {
+      .pm-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────
+       STORY SECTION
+    ───────────────────────────────────────── */
+    #tarina {
+      padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 4vw, 3.5rem);
+    }
+    .story-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 5rem);
+      align-items: start;
+    }
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terra);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .section-label::before { content:''; display:block; width:24px; height:1px; background:var(--terra); }
+    .section-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+      color: var(--night);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .section-body {
+      font-size: 0.9rem;
+      color: rgba(24,39,74,0.72);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    .section-body p + p { margin-top: 0.9rem; }
+
+    .stat-bar {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat-box {
+      background: var(--night);
+      color: var(--cream);
+      border-radius: var(--r);
+      padding: 1.3rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-style: italic;
+      color: var(--terra);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-lbl {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,243,238,0.55);
+    }
+
+    .story-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 6px;
+    }
+    .sp-big {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: var(--r);
+      position: relative;
+    }
+    .sp-small {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: var(--r);
+      position: relative;
+    }
+    .sp-big img, .sp-big .ph,
+    .sp-small img, .sp-small .ph {
+      width: 100%; height: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .story-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────
+       PRODUCTS
+    ───────────────────────────────────────── */
+    #tuotteet {
+      background: var(--night);
+      color: var(--cream);
+      padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 4vw, 3.5rem);
+    }
+    .prod-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .prod-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: clamp(2rem, 4vh, 3rem);
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .prod-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .pm-label-light {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terra);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .pm-label-light::before { content:''; display:block; width:24px; height:1px; background:var(--terra); }
+    .btn-terra {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--terra);
+      color: var(--cream);
+      padding: 0.75rem 1.6rem;
+      border-radius: var(--r);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-terra:hover { background: var(--terra2); transform: translateY(-1px); }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .product-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(245,243,238,0.08);
+      border-radius: var(--r);
+      padding: 1.5rem;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .product-item:hover {
+      border-color: rgba(192,90,58,0.3);
+      background: rgba(255,255,255,0.07);
+    }
+    .pi-icon {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.8rem;
+      color: var(--terra);
+      margin-bottom: 0.8rem;
+      line-height: 1;
+    }
+    .pi-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+    .pi-note {
+      font-size: 0.8rem;
+      color: rgba(245,243,238,0.45);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+    .pi-desc {
+      font-size: 0.84rem;
+      color: rgba(245,243,238,0.6);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    /* ─────────────────────────────────────────
+       GALLERY
+    ───────────────────────────────────────── */
+    #galleria {
+      padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 4vw, 3.5rem);
+    }
+    .gal-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .gal-header { margin-bottom: clamp(2rem, 4vh, 3rem); }
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .gal-cell {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: var(--r);
+      position: relative;
+    }
+    .gal-cell.tall { aspect-ratio: 3/4; grid-row: span 2; }
+    .gal-cell img, .gal-cell .ph { width: 100%; height: 100%; }
+    .gal-cell img { transition: transform 0.5s; }
+    .gal-cell:hover img { transform: scale(1.04); }
+
+    @media (max-width: 640px) {
+      .gal-grid { grid-template-columns: 1fr 1fr; }
+      .gal-cell.tall { grid-row: span 1; aspect-ratio: 4/3; }
+    }
+
+    /* ─────────────────────────────────────────
+       YHTEYSTIEDOT
+    ───────────────────────────────────────── */
+    #yhteystiedot {
+      background: var(--cream2);
+      padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 4vw, 3.5rem);
+    }
+    .ct-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 5rem);
+      align-items: start;
+    }
+    .ct-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+      color: var(--night);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .ct-body {
+      font-size: 0.9rem;
+      color: rgba(24,39,74,0.65);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .ci-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .ci-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.8rem;
+      align-items: baseline;
+    }
+    .ci-lbl {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra);
+      font-weight: 600;
+    }
+    .ci-val {
+      font-size: 0.9rem;
+      color: var(--night);
+      font-weight: 300;
+    }
+    .ct-map {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: var(--r);
+      overflow: hidden;
+      border: 1px solid rgba(24,39,74,0.1);
+    }
+    .ct-map iframe { width: 100%; height: 100%; border: none; }
+
+    @media (max-width: 720px) {
+      .ct-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: 2rem clamp(1.5rem, 4vw, 3.5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .ft-logo {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--cream);
+    }
+    .ft-logo span { color: var(--terra); }
+    .ft-demo {
+      font-size: 0.72rem;
+      color: rgba(245,243,238,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─────────────────────────────────────────
+       REVEAL
+    ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="site-nav">
+    <a href="#" class="nav-logo">Punaisen <span>Pässin</span> Lammastila</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#tarina">
+        <span class="i18n-inline lang-fi active">Tila</span>
+        <span class="i18n-inline lang-sv">Gård</span>
+        <span class="i18n-inline lang-en">Farm</span>
+      </a></li>
+      <li><a href="#perinnemaisema">
+        <span class="i18n-inline lang-fi active">Laidun</span>
+        <span class="i18n-inline lang-sv">Betesmark</span>
+        <span class="i18n-inline lang-en">Pasture</span>
+      </a></li>
+      <li><a href="#tuotteet">
+        <span class="i18n-inline lang-fi active">Tuotteet</span>
+        <span class="i18n-inline lang-sv">Produkter</span>
+        <span class="i18n-inline lang-en">Products</span>
+      </a></li>
+      <li><a href="#yhteystiedot">
+        <span class="i18n-inline lang-fi active">Yhteystiedot</span>
+        <span class="i18n-inline lang-sv">Kontakt</span>
+        <span class="i18n-inline lang-en">Contact</span>
+      </a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="fi">FI</button>
+        <button class="lang-btn" data-lang="sv">SV</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Valikko">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <img src="images/hero.jpg" alt="Suomenlampaat luonnonlaitumilla Juupajoella"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph" style="display:none;width:100%;height:100%;">Lampaat laitumella</div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">
+        <span class="i18n-inline lang-fi active">Juupajoki, Pirkanmaa — luonnonlaidun</span>
+        <span class="i18n-inline lang-sv">Juupajoki, Birkaland — naturlig betesmark</span>
+        <span class="i18n-inline lang-en">Juupajoki, Pirkanmaa — natural pasture</span>
+      </p>
+      <h1 class="hero-h1">
+        <span class="i18n-inline lang-fi active">Lampaat, jotka<br>hoitavat <em>maisemaa</em><br>ja maistuvat<br>erinomaiselta.</span>
+        <span class="i18n-inline lang-sv">Får som sköter<br><em>landskapet</em><br>och smakar<br>förträffligt.</span>
+        <span class="i18n-inline lang-en">Sheep that tend<br>the <em>landscape</em><br>and taste<br>exceptional.</span>
+      </h1>
+      <p class="hero-sub">
+        <span class="i18n-inline lang-fi active">Juupajoella suomenlampaat laiduntavat valtakunnallisesti arvokkaan kulttuurimaiseman niityillä. Karitsanlihaa suoramyyntinä aidolta luonnonlaiduntilalta.</span>
+        <span class="i18n-inline lang-sv">I Juupajoki betar finska lantras på ängarna i ett nationellt värdefullt kulturlandskap. Lamm direkt från ett äkta naturliga betesdrift gård.</span>
+        <span class="i18n-inline lang-en">In Juupajoki, Finnish Landrace sheep graze the meadows of a nationally valuable cultural landscape. Lamb meat direct from a genuine natural grazing farm.</span>
+      </p>
+      <div class="hero-badge">
+        <span class="i18n-inline lang-fi active">Metsähallituksen yhteistyötila</span>
+        <span class="i18n-inline lang-sv">Samarbetsgård med Forststyrelsen</span>
+        <span class="i18n-inline lang-en">Metsähallitus partner farm</span>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- PERINNEMAISEMA -->
+  <section id="perinnemaisema">
+    <div class="pm-inner">
+      <div class="reveal">
+        <p class="pm-label">
+          <span class="i18n-inline lang-fi active">Perinnemaisema</span>
+          <span class="i18n-inline lang-sv">Kulturlandskap</span>
+          <span class="i18n-inline lang-en">Heritage landscape</span>
+        </p>
+        <div class="i18n-block lang-fi active">
+          <h2 class="pm-h2">Lampaat pitävät perinnemaiseman elossa</h2>
+          <div class="pm-body">
+            <p>Punaisen Pässin Lammastila tekee yhteistyötä Metsähallituksen kanssa luonnon monimuotoisuuden suojelemiseksi. Lampaat laiduntavat Juupajoen valtakunnallisesti arvokkaissa kulttuurimaisemissa, pitäen avoimet niityt ja ketoalueet elinvoimaisina.</p>
+            <p>Tämä on ekologinen yhteistyö, jossa lampaat saavat luonnonheinää ja monipuolista ravintorikasta laidunta, samalla kun perinnebiotooppikohteet pysyvät avoimina ja lajirikkaina. Luonto hyötyy, lampaat voivat hyvin, liha maistuu paremmalta.</p>
+          </div>
+        </div>
+        <div class="i18n-block lang-sv">
+          <h2 class="pm-h2">Fåren håller kulturlandskapet levande</h2>
+          <div class="pm-body">
+            <p>Punaisen Pässin Lammastila samarbetar med Forststyrelsen (Metsähallitus) för att skydda biologisk mångfald. Fåren betar på Juupajoens nationellt värdefulla kulturlandskap och håller öppna ängar och kalkmarker livskraftiga.</p>
+          </div>
+        </div>
+        <div class="i18n-block lang-en">
+          <h2 class="pm-h2">Sheep keep the heritage landscape alive</h2>
+          <div class="pm-body">
+            <p>Punaisen Pässin Lammastila collaborates with Metsähallitus to protect biodiversity. The sheep graze Juupajoki's nationally valuable cultural landscapes, keeping open meadows and grassland habitats vibrant.</p>
+            <p>This is ecological cooperation: the sheep get natural, nutrient-rich grazing, and the heritage biotope sites remain open and species-rich. Nature benefits, sheep thrive, and the lamb tastes better for it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stylised landscape map -->
+      <div class="landscape-map reveal" style="transition-delay:0.15s" aria-label="Kaavio: laidunniityt Juupajoella">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- background -->
+          <rect width="400" height="300" fill="#1f3158"/>
+          <!-- hills silhouette -->
+          <ellipse cx="80" cy="260" rx="130" ry="60" fill="#243b68" opacity="0.6"/>
+          <ellipse cx="320" cy="270" rx="110" ry="55" fill="#243b68" opacity="0.5"/>
+          <!-- grazing zones -->
+          <ellipse class="map-zone active" cx="160" cy="150" rx="90" ry="55"/>
+          <ellipse class="map-zone" cx="300" cy="130" rx="65" ry="42"/>
+          <ellipse class="map-zone" cx="80" cy="190" rx="55" ry="35"/>
+          <!-- river -->
+          <path d="M0,220 Q80,200 160,215 Q240,230 320,210 Q360,200 400,215"
+                fill="none" stroke="rgba(117,138,94,0.4)" stroke-width="8"/>
+          <!-- sheep icons -->
+          <circle cx="155" cy="148" r="5" fill="var(--cream2)" opacity="0.9"/>
+          <circle cx="175" cy="152" r="4" fill="var(--cream2)" opacity="0.9"/>
+          <circle cx="145" cy="158" r="4.5" fill="var(--cream2)" opacity="0.9"/>
+          <circle cx="295" cy="128" r="4" fill="var(--cream2)" opacity="0.7"/>
+          <circle cx="308" cy="133" r="3.5" fill="var(--cream2)" opacity="0.7"/>
+          <!-- zone labels -->
+          <text class="map-label-text" x="118" y="198">
+            <span class="i18n-inline lang-fi active">Niitty 1</span>Niitty 1
+          </text>
+          <text class="map-label-text" x="265" y="176">Niitty 2</text>
+          <text class="map-label-text" x="40" y="230">Niitty 3</text>
+          <!-- north arrow -->
+          <g transform="translate(370,20)">
+            <circle r="14" fill="none" stroke="rgba(245,243,238,0.15)" stroke-width="1"/>
+            <text x="0" y="5" text-anchor="middle" fill="rgba(245,243,238,0.4)" font-size="9" font-family="sans-serif">N</text>
+          </g>
+          <!-- title -->
+          <text x="12" y="20" fill="rgba(245,243,238,0.35)" font-size="9" font-family="sans-serif" letter-spacing="1">JUUPAJOKI · LAIDUNNIITYT</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARINA -->
+  <section id="tarina">
+    <div class="story-inner">
+      <div class="reveal">
+        <p class="section-label">
+          <span class="i18n-inline lang-fi active">Tilan tarina</span>
+          <span class="i18n-inline lang-sv">Gårdens historia</span>
+          <span class="i18n-inline lang-en">Farm story</span>
+        </p>
+        <div class="i18n-block lang-fi active">
+          <h2 class="section-h2">Luonnon rytmin mukaan eläminen</h2>
+          <div class="section-body">
+            <p>Jussi Uusi-Rauva kasvattaa suomenlampaita ja texel-lampaita Juupajoen Salokunnan kylässä, noin 50 kilometrin päässä Tampereesta. Tilalla on noin 100 uuhta sekä neljä hevosta, jotka elävät harmonisessa tasapainossa Pirkanmaan metsäisessä maisemassa.</p>
+            <p>Lampaat laiduntavat ulkona mahdollisimman pitkään, vanhoja niittyjä ja ketoja hoidellen. Ruokavalio koostuu luonnonheinistä, perinnebiotooppien kasveista ja talvella omalta tilalta korjatusta heinästä.</p>
+            <p>Viisi vuotta sitten tilalla oli lehmiä, mutta nyt Jussi on löytänyt intohimonsa lampaissa: niiden monipuolisuudesta, maisemanhoitotyöstä ja erittäin laadukkaasta lihasta, joka syntyy kun eläimet saavat elää stressittömästi.</p>
+          </div>
+        </div>
+        <div class="i18n-block lang-sv">
+          <h2 class="section-h2">Att leva i naturens rytm</h2>
+          <div class="section-body">
+            <p>Jussi Uusi-Rauva föder upp finska lantras och texelfår i Salokunta, Juupajoki, ca 50 km från Tammerfors. Gården har ca 100 tackor och fyra hästar.</p>
+            <p>Fåren betar utomhus så länge som möjligt och sköter gamla ängar och naturmarker. Kosten består av naturliga grässorter och traditionella ärtlandskapsväxter.</p>
+          </div>
+        </div>
+        <div class="i18n-block lang-en">
+          <h2 class="section-h2">Living by the rhythm of nature</h2>
+          <div class="section-body">
+            <p>Jussi Uusi-Rauva raises Finnish Landrace and Texel sheep in Salokunta village, Juupajoki, about 50 km from Tampere. The farm has around 100 ewes and four horses.</p>
+            <p>The sheep graze outdoors as long as possible, tending old meadows and grasslands. Their diet consists of natural grasses and traditional grassland plants.</p>
+            <p>Five years ago, the farm had dairy cows; today Jussi has found his passion in sheep: their versatility, landscape management work, and exceptional quality of meat that comes from stress-free living.</p>
+          </div>
+        </div>
+
+        <div class="stat-bar reveal" style="transition-delay:0.1s">
+          <div class="stat-box">
+            <div class="stat-num">~100</div>
+            <div class="stat-lbl">
+              <span class="i18n-inline lang-fi active">uuhta</span>
+              <span class="i18n-inline lang-sv">tackor</span>
+              <span class="i18n-inline lang-en">ewes</span>
+            </div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">4</div>
+            <div class="stat-lbl">
+              <span class="i18n-inline lang-fi active">hevosta</span>
+              <span class="i18n-inline lang-sv">hästar</span>
+              <span class="i18n-inline lang-en">horses</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-photos reveal" style="transition-delay:0.15s">
+        <div class="sp-big">
+          <img src="images/story.jpg" alt="Suomenlampaat Juupajoen niityllä"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none;width:100%;height:100%;"></div>
+        </div>
+        <div class="sp-small">
+          <img src="images/sheep-2.jpg" alt="Karitsoja"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none;width:100%;height:100%;"></div>
+        </div>
+        <div class="sp-small">
+          <img src="images/pasture.jpg" alt="Laidun"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none;width:100%;height:100%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TUOTTEET -->
+  <section id="tuotteet">
+    <div class="prod-inner">
+      <div class="prod-header reveal">
+        <div>
+          <p class="pm-label-light">
+            <span class="i18n-inline lang-fi active">Suoramyynti</span>
+            <span class="i18n-inline lang-sv">Direktförsäljning</span>
+            <span class="i18n-inline lang-en">Direct sales</span>
+          </p>
+          <div class="i18n-block lang-fi active">
+            <h2 class="prod-h2">Lihaa suoraan laitumelta</h2>
+          </div>
+          <div class="i18n-block lang-sv">
+            <h2 class="prod-h2">Kött direkt från betesmarken</h2>
+          </div>
+          <div class="i18n-block lang-en">
+            <h2 class="prod-h2">Meat direct from the pasture</h2>
+          </div>
+        </div>
+        <a href="tel:+358405402806" class="btn-terra">
+          <span class="i18n-inline lang-fi active">Tee tilaus</span>
+          <span class="i18n-inline lang-sv">Gör beställning</span>
+          <span class="i18n-inline lang-en">Place order</span>
+        </a>
+      </div>
+
+      <div class="product-list">
+        <div class="product-item reveal">
+          <div class="pi-icon">I</div>
+          <div class="i18n-block lang-fi active">
+            <p class="pi-name">Karitsanliha</p>
+            <p class="pi-note">Kokonainen tai puolikas · Tilauksesta</p>
+            <p class="pi-desc">Luonnonlaidunella kasvaneen karitsan liha on mureaa, punaisempaa ja aromirikkaampaa kuin tavallinen supermarketin lammas. Kysy hinta ja saatavuus suoraan Jussilta.</p>
+          </div>
+          <div class="i18n-block lang-sv">
+            <p class="pi-name">Lammkött</p>
+            <p class="pi-note">Hel eller halv · På beställning</p>
+            <p class="pi-desc">Kött från betande lamm är mörare, rödare och aromatrikt. Fråga om pris och tillgänglighet direkt av Jussi.</p>
+          </div>
+          <div class="i18n-block lang-en">
+            <p class="pi-name">Lamb meat</p>
+            <p class="pi-note">Whole or half · By order</p>
+            <p class="pi-desc">Naturally grazed lamb meat is more tender, deeper red and more aromatic than standard supermarket lamb. Ask Jussi for price and availability.</p>
+          </div>
+        </div>
+        <div class="product-item reveal" style="transition-delay:0.1s">
+          <div class="pi-icon">II</div>
+          <div class="i18n-block lang-fi active">
+            <p class="pi-name">Lihaosat</p>
+            <p class="pi-note">Paistit · Kyljykset · Muut</p>
+            <p class="pi-desc">Yksittäisiä ruhonosia myydään saatavuuden mukaan. Kaikkia osia hyödynnetään. Kysy myös makkara ja jauheliha.</p>
+          </div>
+          <div class="i18n-block lang-sv">
+            <p class="pi-name">Köttbitar</p>
+            <p class="pi-note">Stek · Kotletter · Övrigt</p>
+            <p class="pi-desc">Enskilda köttbitar säljs enligt tillgång. Fråga om korv och köttfärs.</p>
+          </div>
+          <div class="i18n-block lang-en">
+            <p class="pi-name">Meat cuts</p>
+            <p class="pi-note">Roasts · Chops · Other</p>
+            <p class="pi-desc">Individual cuts sold subject to availability. Also ask about mince and sausage.</p>
+          </div>
+        </div>
+        <div class="product-item reveal" style="transition-delay:0.2s">
+          <div class="pi-icon">III</div>
+          <div class="i18n-block lang-fi active">
+            <p class="pi-name">Jalostuseläimet</p>
+            <p class="pi-note">Suomenlammas · Texel-risteytyket</p>
+            <p class="pi-desc">Jalostusuuhia ja pässejä myydään ajoittain. Suomenlampaan monipuolinen värivalikoima tarjoaa mielenkiintoisia valintoja kasvattajille.</p>
+          </div>
+          <div class="i18n-block lang-sv">
+            <p class="pi-name">Avelsdjur</p>
+            <p class="pi-note">Finsk lantras · Texelkorsningar</p>
+            <p class="pi-desc">Avlstackor och baggar säljs periodvis. Det finska lantrasens mångsidiga färgspektrum erbjuder intressanta val för uppfödare.</p>
+          </div>
+          <div class="i18n-block lang-en">
+            <p class="pi-name">Breeding animals</p>
+            <p class="pi-note">Finnish Landrace · Texel crosses</p>
+            <p class="pi-desc">Breeding ewes and rams sold periodically. The Finnish Landrace's diverse colour range offers interesting choices for breeders.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERIA -->
+  <section id="galleria">
+    <div class="gal-inner">
+      <div class="gal-header reveal">
+        <p class="section-label">
+          <span class="i18n-inline lang-fi active">Galleria</span>
+          <span class="i18n-inline lang-sv">Galleri</span>
+          <span class="i18n-inline lang-en">Gallery</span>
+        </p>
+        <div class="i18n-block lang-fi active"><h2 class="section-h2">Elämää Juupajoella</h2></div>
+        <div class="i18n-block lang-sv"><h2 class="section-h2">Livet i Juupajoki</h2></div>
+        <div class="i18n-block lang-en"><h2 class="section-h2">Life in Juupajoki</h2></div>
+      </div>
+      <div class="gal-grid">
+        <div class="gal-cell tall">
+          <img src="images/gallery-1.jpg" alt="Suomenlampaat"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none;width:100%;height:100%;"></div>
+        </div>
+        <div class="gal-cell">
+          <img src="images/gallery-2.jpg" alt="Laidunniitty"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none;width:100%;height:100%;"></div>
+        </div>
+        <div class="gal-cell">
+          <img src="images/gallery-3.jpg" alt="Karitsat"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none;width:100%;height:100%;"></div>
+        </div>
+        <div class="gal-cell">
+          <img src="images/gallery-4.jpg" alt="Perinnemaisema"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none;width:100%;height:100%;"></div>
+        </div>
+        <div class="gal-cell">
+          <img src="images/gallery-5.jpg" alt="Hevonen"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none;width:100%;height:100%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YHTEYSTIEDOT -->
+  <section id="yhteystiedot">
+    <div class="ct-inner">
+      <div class="reveal">
+        <p class="section-label">
+          <span class="i18n-inline lang-fi active">Yhteystiedot</span>
+          <span class="i18n-inline lang-sv">Kontaktuppgifter</span>
+          <span class="i18n-inline lang-en">Contact</span>
+        </p>
+        <div class="i18n-block lang-fi active">
+          <h2 class="ct-h2">Tee tilaus tai<br>tule tutustumaan</h2>
+          <p class="ct-body">Karitsanliha myydään etukäteistilausten perusteella. Soita Jussille tai jätä viesti Facebookin kautta, niin sovitaan toimitus.</p>
+        </div>
+        <div class="i18n-block lang-sv">
+          <h2 class="ct-h2">Beställ eller<br>kom på besök</h2>
+          <p class="ct-body">Lammköttet säljs utifrån förhandsbeställningar. Ring Jussi eller skicka ett meddelande via Facebook.</p>
+        </div>
+        <div class="i18n-block lang-en">
+          <h2 class="ct-h2">Order or come<br>for a visit</h2>
+          <p class="ct-body">Lamb meat is sold by pre-order. Call Jussi or send a message via Facebook to arrange a delivery.</p>
+        </div>
+        <div class="ci-list">
+          <div class="ci-item">
+            <span class="ci-lbl">
+              <span class="i18n-inline lang-fi active">Puhelin</span>
+              <span class="i18n-inline lang-sv">Telefon</span>
+              <span class="i18n-inline lang-en">Phone</span>
+            </span>
+            <span class="ci-val"><a href="tel:+358405402806">+358 40 540 2806</a> (Jussi Uusi-Rauva)</span>
+          </div>
+          <div class="ci-item">
+            <span class="ci-lbl">Email</span>
+            <span class="ci-val"><a href="mailto:jussi.uusi-rauva@kolumbus.fi">jussi.uusi-rauva@kolumbus.fi</a></span>
+          </div>
+          <div class="ci-item">
+            <span class="ci-lbl">
+              <span class="i18n-inline lang-fi active">Osoite</span>
+              <span class="i18n-inline lang-sv">Adress</span>
+              <span class="i18n-inline lang-en">Address</span>
+            </span>
+            <span class="ci-val">Kokkilantie 161<br>35550 Salokunta, Juupajoki</span>
+          </div>
+          <div class="ci-item">
+            <span class="ci-lbl">Facebook</span>
+            <span class="ci-val"><a href="https://www.facebook.com/PunaisenPassinLammastila/" target="_blank" rel="noopener">Punaisen Pässin Lammastila</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="ct-map reveal" style="transition-delay:0.15s">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=24.3,61.8,24.6,62.0&layer=mapnik&marker=61.9,24.45"
+          title="Kartta: Punaisen Pässin Lammastila, Juupajoki"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="ft-logo">Punaisen <span>Pässin</span> Lammastila</p>
+    <p class="ft-demo">Demo — designed by Anton Jalonen. Sivusto on esittelytarkoituksessa.</p>
+  </footer>
+
+  <script>
+    // i18n
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const blocks = document.querySelectorAll('.i18n-block');
+    const inlines = document.querySelectorAll('.i18n-inline');
+    function setLang(l) {
+      langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+      blocks.forEach(el => el.classList.toggle('active', el.classList.contains('lang-' + l)));
+      inlines.forEach(el => el.classList.toggle('active', el.classList.contains('lang-' + l)));
+      document.documentElement.lang = l;
+      localStorage.setItem('ppl-lang', l);
+    }
+    langBtns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+    setLang(localStorage.getItem('ppl-lang') || 'fi');
+
+    // hamburger
+    const ham = document.getElementById('hamburger');
+    const nl = document.getElementById('nav-links');
+    ham.addEventListener('click', () => { nl.classList.toggle('open'); });
+    nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nl.classList.remove('open')));
+
+    // reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
