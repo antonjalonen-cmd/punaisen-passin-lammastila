@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHOTO-PICKER — Punaisen Pässin Lammastila</title>
+<style>
+body { font-family: monospace; background: #0b0b0b; color: #ccc; padding: 2rem; }
+h1 { color: #b84226; margin-bottom: 0.5rem; }
+p { color: #888; font-size: 0.85rem; margin-bottom: 2rem; }
+.photo-row { border: 1px solid #222; padding: 1.2rem; margin-bottom: 1rem; border-radius: 4px; display: flex; align-items: center; gap: 2rem; }
+.photo-row .label { font-weight: bold; color: #eee; min-width: 200px; }
+.photo-row .fname { color: #b84226; font-size: 0.85rem; }
+.photo-row a { color: #6af; text-decoration: none; padding: 0.4rem 0.8rem; border: 1px solid #6af; border-radius: 3px; font-size: 0.8rem; }
+.photo-row a:hover { background: #6af; color: #000; }
+</style>
+</head>
+<body>
+<h1>PHOTO-PICKER: Punaisen Pässin Lammastila</h1>
+<p>Target folder: C:\Users\anton\Downloads\Claude Site\punaisen-passin-lammastila\images\<br>
+Facebook Page: <a href="https://www.facebook.com/PunaisenPassinLammastila/" style="color:#6af">PunaisenPassinLammastila</a><br>
+Download each photo, rename it as shown, and place in the images/ folder. Then push and re-verify.</p>
+
+<div class="photo-row">
+  <div class="label">01 HERO — Farm panorama / sheep in landscape</div>
+  <div class="fname">images/hero.jpg</div>
+  <a href="https://www.facebook.com/PunaisenPassinLammastila/photos" target="_blank">Open FB Photos →</a>
+</div>
+<div class="photo-row">
+  <div class="label">02 FLOCK — Close-up sheep (Finnsheep)</div>
+  <div class="fname">images/flock.jpg</div>
+  <a href="https://www.facebook.com/PunaisenPassinLammastila/photos" target="_blank">Open FB Photos →</a>
+</div>
+<div class="photo-row">
+  <div class="label">03 LANDSCAPE — Forest pasture / summer grazing</div>
+  <div class="fname">images/landscape.jpg</div>
+  <a href="https://www.facebook.com/PunaisenPassinLammastila/photos" target="_blank">Open FB Photos →</a>
+</div>
+<div class="photo-row">
+  <div class="label">04 PRODUCTS — Meat / wool yarn / leather goods</div>
+  <div class="fname">images/products.jpg</div>
+  <a href="https://www.facebook.com/PunaisenPassinLammastila/photos" target="_blank">Open FB Photos →</a>
+</div>
+
+<p style="margin-top:2rem; font-size:0.75rem; color:#555;">
+After placing photos: git add images/ && git commit -m "Add real photos" && git push<br>
+Then run: python jarvis/verify_site.py punaisen-passin-lammastila --lock<br>
+Should print PASS once photos are in place.
+</p>
+</body>
+</html>
